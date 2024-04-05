@@ -1,5 +1,4 @@
-﻿
-namespace DesafioCrudApi.Models
+﻿namespace DesafioCrudApi.Models
 {
     public class ProductModel
     {
@@ -7,10 +6,8 @@ namespace DesafioCrudApi.Models
         public string? Name { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }
+        public int? CategoryId { get; set; }
 
-        public static implicit operator bool(ProductModel v)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual CategoryModel? Category { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DesafioCrudApi.Models;
+using DesafioCrudApi.Repository;
 using DesafioCrudApi.Repository.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,9 @@ namespace DesafioCrudApi.Controllers
     {
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryController(ICategoryRepository ategoryRepository)
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            _categoryRepository = ategoryRepository;
+            _categoryRepository = categoryRepository;
         }
 
         [HttpGet]
@@ -26,7 +27,7 @@ namespace DesafioCrudApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryModel>> GetCategoryById(int id)
         {
-            CategoryModel category= await _categoryRepository.GetCategoryById(id);
+            CategoryModel category = await _categoryRepository.GetCategoryById(id);
             return Ok(category);
         }
 
@@ -41,7 +42,7 @@ namespace DesafioCrudApi.Controllers
         public async Task<ActionResult<CategoryModel>> UpdateCategory([FromBody] CategoryModel categoryModel, int id)
         {
             categoryModel.Id = id;
-            CategoryModel category= await _categoryRepository.UpdateCategory(categoryModel,id);
+            CategoryModel category = await _categoryRepository.UpdateCategory(categoryModel, id);
             return Ok(category);
         }
 
@@ -49,7 +50,7 @@ namespace DesafioCrudApi.Controllers
         public async Task<ActionResult<CategoryModel>> DeleteCategory(int id)
         {
             bool categoryDeleted = await _categoryRepository.DeleteCategory(id);
-            return Ok(categoryDeleted);
+            return Ok("Categoria deletado com sucesso");
         }
     }
 }

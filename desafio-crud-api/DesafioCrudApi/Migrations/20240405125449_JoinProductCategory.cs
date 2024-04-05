@@ -5,27 +5,27 @@
 namespace DesafioCrudApi.Migrations
 {
     /// <inheritdoc />
-    public partial class BondCategoryProduct : Migration
+    public partial class JoinProductCategory : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "ProductId",
-                table: "Categories",
+                name: "CategoryId",
+                table: "Products",
                 type: "integer",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_ProductId",
-                table: "Categories",
-                column: "ProductId");
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Categories_Products_ProductId",
-                table: "Categories",
-                column: "ProductId",
-                principalTable: "Products",
+                name: "FK_Products_Categories_CategoryId",
+                table: "Products",
+                column: "CategoryId",
+                principalTable: "Categories",
                 principalColumn: "Id");
         }
 
@@ -33,16 +33,16 @@ namespace DesafioCrudApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Categories_Products_ProductId",
-                table: "Categories");
+                name: "FK_Products_Categories_CategoryId",
+                table: "Products");
 
             migrationBuilder.DropIndex(
-                name: "IX_Categories_ProductId",
-                table: "Categories");
+                name: "IX_Products_CategoryId",
+                table: "Products");
 
             migrationBuilder.DropColumn(
-                name: "ProductId",
-                table: "Categories");
+                name: "CategoryId",
+                table: "Products");
         }
     }
 }

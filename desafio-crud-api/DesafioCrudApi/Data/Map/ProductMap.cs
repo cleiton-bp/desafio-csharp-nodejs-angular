@@ -12,6 +12,9 @@ namespace DesafioCrudApi.Data.Map
             builder.Property(x => x.Name).IsRequired().HasMaxLength(255);
             builder.Property(x => x.Price).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(1000);
+            builder.Property(x => x.CategoryId);
+
+            builder.HasOne(x => x.Category);
         }
     }
 }

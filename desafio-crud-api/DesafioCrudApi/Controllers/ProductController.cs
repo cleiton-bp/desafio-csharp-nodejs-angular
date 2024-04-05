@@ -1,4 +1,4 @@
-﻿using DesafioCrudApi.Models;
+﻿﻿using DesafioCrudApi.Models;
 using DesafioCrudApi.Repository.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,7 +49,8 @@ namespace DesafioCrudApi.Controllers
         public async Task<ActionResult<ProductModel>> DeleteProduct(int id)
         {
             bool productDeleted = await _productRepository.DeleteProduct(id);
-            return Ok(productDeleted);
+
+            return Ok("Produto deletado com sucesso");
         }
     }
 }

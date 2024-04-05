@@ -35,12 +35,7 @@ namespace DesafioCrudApi.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Categories");
                 });
@@ -52,6 +47,9 @@ namespace DesafioCrudApi.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
@@ -67,16 +65,18 @@ namespace DesafioCrudApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DesafioCrudApi.Models.CategoryModel", b =>
+            modelBuilder.Entity("DesafioCrudApi.Models.ProductModel", b =>
                 {
-                    b.HasOne("DesafioCrudApi.Models.ProductModel", "Product")
+                    b.HasOne("DesafioCrudApi.Models.CategoryModel", "Category")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("CategoryId");
 
-                    b.Navigation("Product");
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
