@@ -14,11 +14,15 @@ namespace DesafioCrudApi.Repository
         }
         public async Task<ProductModel> GetProductById(int id)
         {
-            return await _dbContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+            return await _dbContext.Products
+                .Include(x => x.Category)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
         public async Task<List<ProductModel>> GetAllProducts()
         {
-            return await _dbContext.Products.ToListAsync();
+            return await _dbContext.Products
+                .Include(x => x.Category)
+                .ToListAsync();
         }
         public async Task<ProductModel> CreateProduct(ProductModel product)
         {

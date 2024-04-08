@@ -1,0 +1,2 @@
+# buscar categoria por id
+GET http://localhost:5054/api/Category/2

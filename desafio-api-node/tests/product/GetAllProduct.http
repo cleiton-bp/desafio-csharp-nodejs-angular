@@ -1,0 +1,2 @@
+# buscar todos os produtos
+GET http://[::1]:3000/products

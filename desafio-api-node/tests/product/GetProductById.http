@@ -1,0 +1,2 @@
+# buscar produto por id
+GET http://[::1]:3000/products/33

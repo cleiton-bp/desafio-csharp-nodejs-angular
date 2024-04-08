@@ -1,0 +1,2 @@
+#  buscar todas as cateorias
+GET  http://localhost:5054/api/Category
