@@ -1,0 +1,27 @@
+import { Component, OnInit } from '@angular/core';
+import { HeaderProductsComponent } from '../../../shared/header-products/header-products.component';
+import { ListProductComponent } from '../../../list-product/list-product.component';
+import { ProductService } from '../../../services/services/product.service';
+import { Product } from '../../../models/product';
+import { NgFor } from '@angular/common';
+
+@Component({
+  selector: 'app-products',
+  standalone: true,
+  imports: [HeaderProductsComponent, ListProductComponent, NgFor],
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.scss'
+})
+export class ProductsComponent implements OnInit {
+  
+  public product!: Product[]
+
+  constructor(private productService: ProductService) {}
+  
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe((response: Product[]) => {
+      this.product = response
+    })
+  }
+
+}

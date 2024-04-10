@@ -1,0 +1,11 @@
+<app-header-products></app-header-products>
+
+<h1 class="text-zinc-700 font-bold text-center text-4xl p-6">Produtos</h1>
+
+<div class="flex justify-center" *ngFor="let product of product">
+  <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/2 my-2 py-2 overflow-x-auto">
+    <ul class="divide-y divide-gray-200" >
+      <app-list-product product={{product.name}} price={{product.price}}></app-list-product>
+    </ul>
+  </div>
+</div>
