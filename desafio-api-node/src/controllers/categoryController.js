@@ -1,4 +1,3 @@
-
 const { getAllCategories, getCategoryById, postCategory, putCategory, deleteCategory } = require('../services/categoryService');
 
 function categoryRoutes(app) {

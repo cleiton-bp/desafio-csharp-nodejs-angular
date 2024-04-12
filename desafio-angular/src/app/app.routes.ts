@@ -5,6 +5,7 @@ import { NewProductComponent } from './components/views/product/new-product/new-
 import { UpdateProductComponent } from './components/views/product/update-product/update-product.component';
 import { DeleteProductComponent } from './components/views/product/delete-product/delete-product.component';
 import { CategoriesComponent } from './components/views/category/categories/categories.component';
+import { NewCategoryComponent } from './components/views/category/new-category/new-category.component';
 
 export const routes: Routes = [
   {
@@ -24,7 +25,7 @@ export const routes: Routes = [
     component: UpdateProductComponent
   },
   {
-    path: "products/delete",
+    path: "products/delete/",
     component: DeleteProductComponent
   },
   {
@@ -33,6 +34,6 @@ export const routes: Routes = [
   },
   {
     path: "categories/add",
-    component: NewProductComponent
+    component: NewCategoryComponent
   }
 ];

@@ -14,19 +14,20 @@ function productRoutes(app) {
     });
 
     app.post("/products", async (req, res) => {
-
         if (!req.body.name || !req.body.price) {
             res.status(400).send("Invalid value: 'name' and 'price' are required");
             return;
         }
-
-        const newProduct = await postProduct(
+        
+        const product = await postProduct(
             req.body.name,
             req.body.description,
             req.body.price,
             req.body.categoryId
+            
         )
-        res.status(201).send(newProduct)
+        console.log(req.body.categoryId)
+        res.status(201).send(product)
     })
 
     app.put("/products/:id", async (req, res) => {

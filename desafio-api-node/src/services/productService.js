@@ -18,12 +18,19 @@ async function getProductById(id) {
 
 async function postProduct(Name, Description, Price, CategoryId = null) {
     let body = {}
+
     if (CategoryId !== null) {
         body = {
             "name": Name,
             "description": Description,
             "price": Price,
             categoryId: CategoryId
+        }
+    } else if (CategoryId === null) {
+        body = {
+            "name": Name,
+            "description": Description,
+            "price": Price,
         }
     } else {
         body = {
@@ -32,6 +39,7 @@ async function postProduct(Name, Description, Price, CategoryId = null) {
             "price": Price,
         }
     }
+
     const response = await axios.post(`${URL}/Product`, body)
     return response.data
 }
