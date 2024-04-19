@@ -1,7 +1,9 @@
 
 using DesafioCrudApi.Data;
+using DesafioCrudApi.Models;
 using DesafioCrudApi.Repository;
 using DesafioCrudApi.Repository.interfaces;
+using DesafioCrudApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesafioCrudApi
@@ -11,6 +13,9 @@ namespace DesafioCrudApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var test = builder.Services.AddTransient<TokenService>();
+            Console.WriteLine(test.ToString());//teste
 
             // Add services to the container.
 
@@ -24,6 +29,7 @@ namespace DesafioCrudApi
                     options => options.UseNpgsql(builder.Configuration.GetConnectionString("Database"))
                 );
 
+
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
@@ -35,6 +41,9 @@ namespace DesafioCrudApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.MapGet("/login", (TokenService Services) => Services.Generate(
+                new UserModel("test1@gmail.com", "123", new[] { "user", "admin" })));
 
             app.UseHttpsRedirection();
 
